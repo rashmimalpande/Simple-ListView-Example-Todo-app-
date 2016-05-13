@@ -4,6 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -11,6 +18,24 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final ArrayList<String> toDo = new ArrayList<>();
+        ListView listView = (ListView) findViewById(R.id.list);
+        final EditText editText = (EditText) findViewById(R.id.text);
+        Button button = (Button) findViewById(R.id.addButton);
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, toDo);
+        listView.setAdapter(adapter);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String item = editText.getText().toString();
+
+                adapter.add(item);
+            }
+        });
+
     }
 
     @Override

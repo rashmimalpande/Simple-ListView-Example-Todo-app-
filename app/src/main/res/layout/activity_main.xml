@@ -17,18 +17,28 @@
 
     </ListView>
 
-    <EditText
-        android:id="@+id/text"
-        android:text="Say something..."
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/list"/>
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
 
-    <Button
-        android:text="add"
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/list"
-        android:layout_toRightOf="@+id/text"/>
+        <EditText
+            android:id="@+id/text"
+            android:text="Say something"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:text="add"
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"/>
+
+    </LinearLayout>
+
+
+
 </RelativeLayout>
