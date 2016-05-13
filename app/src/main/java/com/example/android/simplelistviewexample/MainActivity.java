@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +21,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         final ArrayList<String> toDo = new ArrayList<>();
-        ListView listView = (ListView) findViewById(R.id.list);
+        final ListView listView = (ListView) findViewById(R.id.list);
         final EditText editText = (EditText) findViewById(R.id.text);
         Button button = (Button) findViewById(R.id.addButton);
 
@@ -31,8 +32,20 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 String item = editText.getText().toString();
+                toDo.add(0, item);
+                adapter.notifyDataSetChanged();
+                editText.setText("");
 
-                adapter.add(item);
+
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                toDo.remove(position);
+                adapter.notifyDataSetChanged();
+                return true;
             }
         });
 
